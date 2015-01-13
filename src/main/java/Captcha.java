@@ -4,10 +4,9 @@ import java.util.List;
 public class Captcha {
     private Operator operator;
     private Operand leftOperand;
-    private int pattern;
     private Operand rightOperand;
-
-    List<Pattern> patterns;
+    private int pattern;
+    private List<Pattern> patterns;
 
     public Captcha(int pattern, int leftOperand, int operator, int rightOperand) {
         this.operator = new Operator(operator);
