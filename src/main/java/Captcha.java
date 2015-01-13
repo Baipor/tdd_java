@@ -1,50 +1,39 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class Captcha {
-    private Operator operator;
-    private Operand leftOperand;
-    private Operand rightOperand;
+    private int operator;
+    private int leftOperand;
+    private int rightOperand;
     private int pattern;
-    private List<Pattern> patterns;
 
     public Captcha(int pattern, int leftOperand, int operator, int rightOperand) {
-        this.operator = new Operator(operator);
-        this.leftOperand = new Operand(leftOperand);
         this.pattern = pattern;
-        this.rightOperand = new Operand(rightOperand);
-
-        createPatterns();
-    }
-
-    public void createPatterns() {
-        patterns = new ArrayList<Pattern>();
-        patterns.add(new Pattern1(leftOperand, operator, rightOperand));
-        patterns.add(new Pattern2(leftOperand, operator, rightOperand));
+        this.operator = operator;
+        this.leftOperand = leftOperand;
+        this.rightOperand = rightOperand;
     }
 
     public String getCaptcha() {
-        return format();
+        return getPattern().toString();
     }
 
-    private String format() {
-        for (Pattern pattern : patterns) {
+    private Pattern getPattern() {
+        for (Pattern pattern : PatternFactory.create(leftOperand, operator, rightOperand)) {
             if (pattern.isValidPattern(this.pattern)) {
-                return pattern.toString();
+                return pattern;
             }
         }
         return null;
     }
 
     public String getLeftOperand() {
-        return this.leftOperand.toString();
+        return getPattern().getLeftOperand().toString();
     }
 
     public String getRightOperand() {
-        return this.rightOperand.toString();
+        return getPattern().getRightOperand().toString();
     }
 
     public String getOperator() {
-        return this.operator.toString();
+        return getPattern().getOperator().toString();
     }
 }
