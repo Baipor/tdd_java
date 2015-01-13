@@ -13,8 +13,12 @@ public class Captcha {
     }
 
     public String getCaptcha() {
+        return format();
+    }
+
+    private String format() {
         if (isAlphabetOperatorNumberPattern()) {
-            return String.format("%s %s %d", getLeftOperand(), operator.toString(), rightOperand.getOperand());
+            return new Pattern1(leftOperand, operator, rightOperand).toString();
         }
         return String.format("%d %s %s", leftOperand.getOperand(), operator.toString(), getRightOperand());
     }
