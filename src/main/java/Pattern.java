@@ -1,4 +1,4 @@
-public class Pattern {
+abstract public class Pattern {
 
     protected Operator operator;
     protected Operand leftOperand;
@@ -9,5 +9,7 @@ public class Pattern {
         this.operator = operator;
         this.rightOperand = rightOperand;
     }
+    
+    public abstract boolean isValidPattern(int pattern) ;
 
 }

@@ -8,4 +8,9 @@ public class Pattern2 extends Pattern{
         return String.format("%d %s %s", this.leftOperand.getOperand(), this.operator.toString(), this.rightOperand);
     }
 
+    @Override
+    public boolean isValidPattern(int pattern) {
+        return pattern == 2;
+    }
+
 }
