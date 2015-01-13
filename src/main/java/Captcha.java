@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Captcha {
     private Operator operator;
     private Operand leftOperand;
@@ -17,10 +20,15 @@ public class Captcha {
     }
 
     private String format() {
-        if (isAlphabetOperatorNumberPattern()) {
-            return new Pattern1(leftOperand, operator, rightOperand).toString();
+        List<Pattern> patterns = new ArrayList<Pattern>();
+        patterns.add(new Pattern1(leftOperand, operator, rightOperand));
+        patterns.add(new Pattern2(leftOperand, operator, rightOperand));
+        for (Pattern pattern : patterns) {
+            if(pattern.isValidPattern(this.pattern)) {
+                return pattern.toString();
+            }
         }
-        return new Pattern2(leftOperand, operator, rightOperand).toString();
+        return null;
     }
 
     private boolean isAlphabetOperatorNumberPattern() {
