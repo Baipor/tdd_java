@@ -20,7 +20,7 @@ public class Captcha {
         if (isAlphabetOperatorNumberPattern()) {
             return new Pattern1(leftOperand, operator, rightOperand).toString();
         }
-        return String.format("%d %s %s", leftOperand.getOperand(), operator.toString(), getRightOperand());
+        return new Pattern2(leftOperand, operator, rightOperand).toString();
     }
 
     private boolean isAlphabetOperatorNumberPattern() {
