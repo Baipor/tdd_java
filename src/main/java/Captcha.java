@@ -1,22 +1,22 @@
-
 public class Captcha {
     private Operator operator;
-    private int leftOperand;
+    private Operand leftOperand;
     private int pattern;
-    private int rightOperand;
+    private Operand rightOperand;
 
     public Captcha(int pattern, int leftOperand, int operator, int rightOperand) {
         this.operator = new Operator(operator);
-        this.leftOperand = leftOperand;
+        this.leftOperand = new Operand(leftOperand);
         this.pattern = pattern;
-        this.rightOperand = rightOperand;
+        this.rightOperand = new Operand(rightOperand);
+        ;
     }
 
     public String getCaptcha() {
-        if(isAlphabetOperatorNumberPattern()) {
-            return String.format("%s %s %d", getLeftOperand(), operator.toString(), rightOperand);
+        if (isAlphabetOperatorNumberPattern()) {
+            return String.format("%s %s %d", getLeftOperand(), operator.toString(), rightOperand.getOperand());
         }
-        return String.format("%d %s %s", leftOperand, operator.toString(), getRightOperand());
+        return String.format("%d %s %s", leftOperand.getOperand(), operator.toString(), getRightOperand());
     }
 
     private boolean isAlphabetOperatorNumberPattern() {
@@ -24,16 +24,11 @@ public class Captcha {
     }
 
     public String getLeftOperand() {
-        return getStringOperand(this.leftOperand);
+        return this.leftOperand.toString();
     }
 
     public String getRightOperand() {
-        return getStringOperand(this.rightOperand);
-    }
-
-    private String getStringOperand(int operand) {
-        String [] displayNumbers = {"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
-        return displayNumbers[operand - 1];
+        return this.rightOperand.toString();
     }
 
     public String getOperator() {
