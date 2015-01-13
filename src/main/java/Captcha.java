@@ -31,10 +31,6 @@ public class Captcha {
         return null;
     }
 
-    private boolean isAlphabetOperatorNumberPattern() {
-        return this.pattern == 1;
-    }
-
     public String getLeftOperand() {
         return this.leftOperand.toString();
     }
