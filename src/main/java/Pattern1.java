@@ -1,13 +1,7 @@
-public class Pattern1 {
-    
-    private Operator operator;
-    private Operand leftOperand;
-    private Operand rightOperand;
-    
+public class Pattern1 extends Pattern {
+
     public Pattern1(Operand leftOperand, Operator operator, Operand rightOperand) {
-        this.leftOperand = leftOperand;
-        this.operator = operator;
-        this.rightOperand = rightOperand;
+        super(leftOperand, operator, rightOperand);
     }
 
     public String toString() {
